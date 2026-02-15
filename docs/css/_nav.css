@@ -1,0 +1,67 @@
+nav {
+  padding: 10px 5%; }
+
+.nav-groups, .nav-group {
+  display: flex;
+  flex-direction: column; }
+
+.nav-item {
+  display: block;
+  padding-top: 10px; }
+
+.nav-toggle {
+  align-self: flex-end;
+  display: initial;
+  position: absolute;
+  cursor: pointer;
+  color: #818a91;
+  font-size: 130%;
+  font-family: "Fira Sans", sans-serif; }
+
+.nav-collapsed {
+  max-height: 0; }
+
+.nav-expanded {
+  max-height: 140px; }
+
+.nav-group {
+  margin-top: 0;
+  margin-bottom: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-out;
+  padding: 0;
+  text-align: right;
+  margin-left: 0; }
+
+nav a {
+  text-decoration: none;
+  color: #818a91;
+  font-size: 130%;
+  font-family: "Fira Sans", sans-serif; }
+
+.nav-brand {
+  font-family: "Handlee", serif;
+  text-transform: lowercase;
+  font-weight: bold;
+  color: black; }
+
+@media screen and (min-width: 768px) {
+  .nav-groups {
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px 0;
+    flex-direction: row; }
+  .nav-brand {
+    font-size: 140%; }
+  .nav-item:not(:last-child) {
+    padding-right: 30px; }
+  .nav-toggle {
+    display: none; }
+  .nav-group {
+    overflow: initial;
+    text-align: initial;
+    margin-left: auto; }
+  .nav-groups, .nav-group {
+    flex-direction: row; }
+  nav {
+    padding: 0px 2%; } }

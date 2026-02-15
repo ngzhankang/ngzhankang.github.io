@@ -1,0 +1,11 @@
+.content h3 {
+  font-size: 1.4rem; }
+
+.content {
+  font-family: "Merriweather", serif; }
+
+ul {
+  font-size: 0.9em; }
+
+#experience, #technical-skills, #projects, #other-interests {
+  margin-top: 3.5rem; }
