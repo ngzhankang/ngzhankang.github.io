@@ -2,12 +2,12 @@ name:                myblog
 version:             0.1.0.0
 -- synopsis:
 -- description:
-homepage:            https://github.com/githubuser/myblog#readme
+homepage:            https://github.com/ngzhankang/myblog#readme
 license:             BSD3
 license-file:        LICENSE
 author:              Ng Zhan Kang
 maintainer:          ngzhankang@outlook.com
-copyright:           2022 Ng Zhan Kang
+copyright:           2026 Ng Zhan Kang
 category:            Web
 build-type:          Simple
 extra-source-files:  README.md
@@ -19,6 +19,7 @@ executable myblog
   ghc-options:         -threaded
   build-depends:       base >= 4.7 && < 5,
                        hakyll >= 4.15.1.1 && < 5,
+                       hakyll-sass >= 0.2.4,
                        hjsmin == 0.2.*,
                        bytestring >= 0.10.12,
                        filepath

@@ -4,6 +4,7 @@ import Control.Monad (liftM)
 import qualified Data.ByteString.Lazy.Char8 as C
 import           Data.Monoid (mappend)
 import           Hakyll
+import           Hakyll.Web.Sass (sassCompiler)
 import           Text.Jasmine
 import           Data.List              (isInfixOf, isSuffixOf)
 import           System.FilePath.Posix  (splitFileName, takeBaseName, takeDirectory, (</>), takeFileName)
@@ -16,17 +17,11 @@ config = defaultConfiguration {
     destinationDirectory = "docs"
 }
 
-
 compressJsCompiler :: Compiler (Item String)
 compressJsCompiler = do
     let minifyJS = C.unpack . minify . C.pack . itemBody
     s <- getResourceString
     return $ itemSetBody (minifyJS s) s
-
-
-
-
-
 
 -- postCtx :: Context String
 -- postCtx =
@@ -47,10 +42,6 @@ activeClassField :: Context a
 activeClassField = functionField "activeClass" $ \[p] _ -> do
   path <- toFilePath <$> getUnderlying
   return $ if path == p then "active" else "inactive"
-
-
-
-
 
 -- clean url extensions (www.xyz/about.html -> www.xyz/about)
 -- from https://www.rohanjain.in/hakyll-clean-urls/
@@ -79,6 +70,9 @@ cleanIndex url
 
 main :: IO ()
 main = hakyllWith config $ do
+    match "css/*.scss" $ do
+        route   $ setExtension "css"
+        compile sassCompiler
     match "images/favicon/*" $ do
         route   idRoute
         compile copyFileCompiler

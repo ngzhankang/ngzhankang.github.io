@@ -1,0 +1,36 @@
+main {
+  flex-grow: 1;
+  flex-shrink: 0;
+  padding: 3rem 1.5rem;
+  display: flex;
+  align-items: center; }
+
+.content h1 {
+  font-size: 1.6rem;
+  font-family: "Fira Sans", sans-serif;
+  color: #363636;
+  line-height: 1.125;
+  margin-bottom: .3125rem; }
+
+.content h4 {
+  color: #363636;
+  font-size: 1.35em;
+  margin-top: 30px;
+  margin-bottom: .8em; }
+
+.content p {
+  font-size: .9em; }
+
+.content h2 {
+  font-size: 1.3rem;
+  font-weight: 300;
+  margin-bottom: .3125rem;
+  font-family: "Fira Sans", sans-serif; }
+
+@media screen and (min-width: 1200px) {
+  .content {
+    max-width: 1152px; } }
+
+@media screen and (min-width: 1400px) {
+  .content {
+    max-width: 1344px; } }
