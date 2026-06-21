@@ -1,9 +1,11 @@
+cabal-version:       3.0
+
 name:                myblog
 version:             0.1.0.0
 -- synopsis:
 -- description:
 homepage:            https://github.com/ngzhankang/myblog#readme
-license:             BSD3
+license:             BSD-3-Clause
 license-file:        LICENSE
 author:              Ng Zhan Kang
 maintainer:          ngzhankang@outlook.com
@@ -11,7 +13,6 @@ copyright:           2026 Ng Zhan Kang
 category:            Web
 build-type:          Simple
 extra-source-files:  README.md
-cabal-version:       >=1.10
 
 executable myblog
   main-is:             site.hs

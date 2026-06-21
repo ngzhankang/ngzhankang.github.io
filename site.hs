@@ -1,6 +1,5 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
-import Control.Monad (liftM)
 import qualified Data.ByteString.Lazy.Char8 as C
 import           Data.Monoid (mappend)
 import           Hakyll
@@ -193,23 +192,10 @@ main = hakyllWith config $ do
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
 
-    -- https://github.com/ccressent/cressent.org-hakyll/commit/8c5603453a5f968e600cf3317cd10037e3f45b55
-    match "css/*" $
-        compile $ liftM (fmap compressCss) $
-            getResourceFilePath
-            >>= \fp -> unixFilter "sass" ["--scss", fp] ""
-            >>= makeItem
-
-    -- match "css/default.scss" $
-    --     compile $ liftM (fmap compsCss) $
-    --         getResourceFilePath
-    --         >>= \fp -> unixFilter "sass" ["--scss", fp] ""
-    --         >>= makeItem
-
     create ["stylesheet/default.css"] $ do
         route idRoute
         compile $ do
-            items <- loadAll "css/*"
+            items <- loadAll "css/*.scss"
             makeItem $ concatMap itemBody (items :: [Item String])
 
     match "index.js" $ do
