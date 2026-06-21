@@ -33,7 +33,7 @@ jobs:
             ${{ runner.os }}-${{ matrix.ghc }}-
       - name: Build Site
         run: |
-          cabal v3-build $CONFIG
+          cabal build
           cabal exec site build
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.5.0
