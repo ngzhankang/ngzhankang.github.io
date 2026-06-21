@@ -3,18 +3,19 @@ name: CI
 on:
   push:
     branches:
-      - master
+      - develop
 jobs:
   build:
-    runs-on: [ubuntu-latest, macOS-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
+        os: [ubuntu-latest, macOS-latest, windows-latest]
         cabal: ["3.6.2.0"]
         ghc: ["8.10.7"]
     steps:
       - uses: actions/checkout@v7
       - name: Setup Haskell
-        uses: actions/setup-haskell@v1.1
+        uses: haskell-actions/setup@v2
         with:
           ghc-version: ${{ matrix.ghc }}
           cabal-version: ${{ matrix.cabal }}
@@ -22,7 +23,7 @@ jobs:
         run: |
           cabal v3-update
           cabal v3-freeze $CONFIG
-      - uses: actions/cache@v3
+      - uses: actions/cache@v5
         with:
           path: |
             ${{ steps.setup-haskell-cabal.outputs.cabal-store }}
@@ -36,7 +37,7 @@ jobs:
           cabal exec site build
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.5.0
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/develop'
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: main # The branch the action should deploy to.
