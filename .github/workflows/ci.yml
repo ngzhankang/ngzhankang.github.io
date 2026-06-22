@@ -44,7 +44,7 @@ jobs:
           cabal build
           cabal exec myblog build
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v5
+        uses: JamesIves/github-pages-deploy-action@v4.8
         if: github.ref == 'refs/heads/develop'
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
