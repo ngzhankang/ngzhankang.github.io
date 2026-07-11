@@ -1,0 +1,9 @@
+packages: .
+
+-- Link against the system libsass instead of hlibsass's bundled copy, which
+-- fails to build under newer toolchains (GHC 9.10 / recent clang). Requires
+-- system libsass: `brew install libsass` (macOS) or `apt-get install
+-- libsass-dev` (Debian/Ubuntu). On macOS the Homebrew search paths are set in
+-- cabal.project.local.
+package hlibsass
+  flags: +externalLibsass

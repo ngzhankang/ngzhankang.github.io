@@ -21,6 +21,42 @@ ul {
     margin-top: 3.5rem;
 }
 
+// `main` is a flex container, so `.content` shrink-wraps to its widest child.
+// The PDF canvases have no intrinsic width until they render, which would
+// collapse this page to the width of the "Download PDF" line. Force full width.
+.content:has(.resume-viewer) {
+    width: 100%;
+}
+
+// PDF resume rendered by PDF.js into stacked <canvas> pages, inside the site chrome.
+.resume-viewer {
+    width: 100%;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.pdf-page {
+    width: 100%;
+    max-width: 850px;
+    height: auto;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+    border-radius: 2px;
+}
+
+.resume-fallback {
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.resume-actions {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.9em;
+}
+
 // #software-development-engineer-intern {
 //     margin-top: 3rem;
 // }

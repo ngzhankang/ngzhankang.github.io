@@ -22,11 +22,6 @@ compressJsCompiler = do
     s <- getResourceString
     return $ itemSetBody (minifyJS s) s
 
--- postCtx :: Context String
--- postCtx =
---     dateField "date" "%B %e, %Y" `mappend`
---     defaultContext
-
 postCtx :: Context String
 postCtx =
   dateField "date" "%B %e, %Y" <>
@@ -65,8 +60,6 @@ cleanIndex url
     | otherwise            = url
   where idx = "index.html"
 
-
-
 main :: IO ()
 main = hakyllWith config $ do
     match "css/*.scss" $ do
@@ -82,95 +75,33 @@ main = hakyllWith config $ do
 
     match "index.html" $ do
         route   idRoute
-        compile $ pandocCompiler 
-                >>= loadAndApplyTemplate"templates/default.html" postCtx
+        compile $ do
+            posts <- fmap (take 5) . recentFirst =<< loadAll "posts/*"
+            let indexCtx =
+                    listField "posts" postCtx (return posts) <>
+                    siteCtx
+            getResourceBody
+                >>= applyAsTemplate indexCtx
+                >>= loadAndApplyTemplate "templates/default.html" indexCtx
+                >>= relativizeUrls
+                >>= cleanIndexUrls
 
     match (fromList["about.md"]) $ do
         route $ cleanRoute
         compile $ pandocCompiler
-                -- >>= loadAndApplyTemplate "templates/about.html" postCtx
                 >>= loadAndApplyTemplate "templates/about.html" siteCtx
-                -- >>= loadAndApplyTemplate "templates/default.html" postCtx
                 >>= loadAndApplyTemplate "templates/default.html" siteCtx
                 >>= relativizeUrls
                 >>= cleanIndexUrls
 
+    match "resume.pdf" $ do
+        route   idRoute
+        compile copyFileCompiler
 
-
-
-
-
-
-
-
-    -- match "index.html" $ do
-    --     route   idRoute
-    --     compile $ do
-    --         posts <- recentFirst =<< loadAll "posts/*"
-    --         let indexCtx =
-    --                 listField "posts" postCtx (return posts) `mappend`
-    --                 constField "title" "Welcome to my personal space!"           `mappend`
-    --                 defaultContext
-
-    --         getResourceBody
-    --             >>= applyAsTemplate indexCtx
-    --             >>= loadAndApplyTemplate "templates/default.html" indexCtx
-    --             >>= relativizeUrls
-
-    -- match "about.html" $ do
-    --     route idRoute
-    --     compile $ 
-        
-
-
-    -- create ["about.html"] $ do
-    --     route   idRoute
-    --     compile $ do
-    --         let aboutCtx =
-    --                 -- listField "posts" postCtx (return posts) `mappend`
-    --                 constField "title" "Who exactly is this guy???" `mappend`
-    --                 defaultContext
-
-    --         -- getResourceBody
-    --         makeItem ""
-    --             -- >>= applyAsTemplate aboutCtx
-    --             >>= loadAndApplyTemplate "templates/about.html" aboutCtx
-    --             >>= loadAndApplyTemplate "templates/default.html" aboutCtx
-    --             >>= relativizeUrls
-
-
-
-
-
-
-    -- create ["archive.html"] $ do
-    --     route   idRoute
-    --     compile $ do
-    --         posts <- recentFirst =<< loadAll "posts/*"
-    --         let archiveCtx =
-    --                 listField "posts" postCtx (return posts) `mappend`
-    --                 constField "title" "Archives"            `mappend`
-    --                 defaultContext
-
-    --         makeItem ""
-    --             >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
-    --             >>= loadAndApplyTemplate "templates/default.html" archiveCtx
-    --             >>= relativizeUrls
-
-
-
-
-
-
-
-
-    -- match (fromList ["resume.md"]) $ do
-    --     route   $ setExtension "html"
-    --     compile $ pandocCompiler
-    --         >>= loadAndApplyTemplate "templates/default.html" defaultContext
-    --         >>= relativizeUrls
-
-
+    -- Self-hosted PDF.js (see js/pdfjs/README.md); powers the /resume viewer.
+    match "js/pdfjs/*.js" $ do
+        route   idRoute
+        compile copyFileCompiler
 
     match (fromList["resume.md"]) $ do
         route $ cleanRoute
@@ -180,10 +111,6 @@ main = hakyllWith config $ do
                 >>= loadAndApplyTemplate "templates/default.html" siteCtx
                 >>= relativizeUrls
                 >>= cleanIndexUrls
-
-
-
-
 
     match "posts/*" $ do
         route $ setExtension "html"
@@ -216,27 +143,4 @@ main = hakyllWith config $ do
                 >>= loadAndApplyTemplate "templates/default.html" archiveCtx
                 >>= relativizeUrls
 
-    -- match "index.html" $ do
-    --     route   idRoute
-    --     compile $ do
-    --         posts <- recentFirst =<< loadAll "posts/*"
-    --         let indexCtx =
-    --                 listField "posts" postCtx (return posts) `mappend`
-    --                 constField "title" "Welcome to my personal space!"           `mappend`
-    --                 defaultContext
-
-            -- getResourceBody
-    --             >>= applyAsTemplate indexCtx
-    --             >>= loadAndApplyTemplate "templates/default.html" indexCtx
-    --             >>= relativizeUrls
-
-    
-
     match "templates/*" $ compile templateCompiler
-
-
---------------------------------------------------------------------------------
--- postCtx :: Context String
--- postCtx =
---     dateField "date" "%B %e, %Y" `mappend`
---     defaultContext

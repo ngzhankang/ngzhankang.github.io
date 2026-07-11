@@ -11,9 +11,12 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         cabal: ["latest"]
-        ghc: ["8.10.7"]
+        ghc: ["9.10.3"]
     steps:
       - uses: actions/checkout@v6
+
+      - name: Install libsass
+        run: sudo apt-get update && sudo apt-get install -y libsass-dev
 
       - name: Setup Haskell
         id: setup

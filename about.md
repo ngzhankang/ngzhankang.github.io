@@ -1,16 +1,13 @@
 ---
 title:  About Me
 author: Zhan Kang
-lastUpdate: 13/2/2023
+lastUpdate: 11/7/2026
 ---
 
+Hi! I'm Zhan Kang, a Junior at SUTD in the CSD Pillar (Computer Science and Design).
 
-I'm Ng Zhan Kang, class of 2021 Diploma In Information Technology graduate from <a href="https://www.sp.edu.sg/" class="underline">Singapore Polytechnic</a>. I am currently serving my nation for 2 years before i continue to pursue further education in a <a href="https://www.sutd.edu.sg/" class="underline">local public university</a>.
+I'm drawn to applied machine learning: less the theory for its own sake, and more the part where you take a messy real-world problem and get something to work. I like picking up new skills and libraries just to see what they can do, and every so often one of them actually sticks and changes how I work. Right now I'm digging into building a core library, understanding what is going on in the <a href="https://man7.org/linux/man-pages/" class="underline">linux man7 page</a> (which is kinda confusing not gonna lie)...
 
-During my schooling years in Singapore Polytechnic, I have done projects related to full-stacked web development, Machine Learning, and Deep Analysis. My final-year project team and I have also worked on creating Natural Language Processing models for a local bank to categorize companies according to their appropriate sectors based on the company description.
+Apart from being a CS nerd, I like distance running, as well as badminton. I once (and still dreaming) of representing Singapore, with <a href="https://www.instagram.com/ricviv_xxvii/?hl=en" class="underline">Richard Heng</a> as my inspiration - and while I'm not there, the discipline of it still shapes how I approach most things. Running (and the occasional badminton game or hike) is also how I clear my head and stay close to friends.
 
-I interned at <a href="https://www.inspiraz.com/" class="underline">Inspiraz Technology Pte Ltd</a> from August 2021 to January 2022, where my teammate and I created a screw inspection sub-module for <a href="https://www.vizcam.net/" class="underline">Vizcam</a>, the company's machine vision software. 
-
-I love doing volunteering activities. Some activities I have done are Meals-On-Wheels, where I deliver food to eldierlies with mobility issues. I have also volunteered in senior activity centres, preparing activites to entertain elderlies in Taman Jurong. Currently I am applying more volunterring activities so that I can better use my time during bookouts.
-
-I also like playing badminton, swimming, cycling, running, as well as hiking around Singapore! I feel that those activities allow me to destress, as well as improving bonds with peers.
+I love doing volunteering activities. I've delivered meals through Meals-on-Wheels to elderly esidents with mobility issues, and helped run activities at a senior activity centre in Taman Jurong. There's something grounding about it that I keep coming back to. I'm currently volunteering with <a href="https://www.budding-minds.org" class="underline">Budding Minds</a>.

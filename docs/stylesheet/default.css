@@ -233,6 +233,33 @@ ul {
 
 #experience, #technical-skills, #projects, #other-interests {
   margin-top: 3.5rem; }
+
+.content:has(.resume-viewer) {
+  width: 100%; }
+
+.resume-viewer {
+  width: 100%;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem; }
+
+.pdf-page {
+  width: 100%;
+  max-width: 850px;
+  height: auto;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+  border-radius: 2px; }
+
+.resume-fallback {
+  text-align: center;
+  padding: 2rem 0; }
+
+.resume-actions {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.9em; }
 * {
   margin: 0;
   padding: 0;
@@ -472,3 +499,30 @@ ul {
 
 #experience, #technical-skills, #projects, #other-interests {
   margin-top: 3.5rem; }
+
+.content:has(.resume-viewer) {
+  width: 100%; }
+
+.resume-viewer {
+  width: 100%;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem; }
+
+.pdf-page {
+  width: 100%;
+  max-width: 850px;
+  height: auto;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+  border-radius: 2px; }
+
+.resume-fallback {
+  text-align: center;
+  padding: 2rem 0; }
+
+.resume-actions {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.9em; }

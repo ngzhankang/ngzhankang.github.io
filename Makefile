@@ -1,11 +1,16 @@
-.PHONY: build watch preview
+.PHONY: install build site watch preview clean
+
+install:
+	cabal update
 
 build:
 	cabal build
 
+site: build
+	cabal exec myblog build
+
 watch:
 	cabal run myblog -- watch
 
-preview:
-	cabal run myblog -- watch
-	@echo "Open http://localhost:8000 in your browser"
+clean:
+	cabal run myblog -- clean
