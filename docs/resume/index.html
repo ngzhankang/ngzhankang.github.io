@@ -41,76 +41,74 @@
     <main>
         <div class="content">
             <!-- <h1>Resume</h1> -->
-            <h1 id="education">Education</h1>
-<hr>
-<h2>
-Diploma In Information Technology
-</h2>
-<p>
-<strong>Singapore Polytechnic</strong> — <em>Apr 2019 - Apr 2022</em>
-<br>
-<strong>Singapore University Of Technology And Design</strong> — <em>July 2025 - </em>
+            <div id="pdf-viewer" class="resume-viewer" aria-label="Resume document">
+
+</div>
+<p class="resume-actions">
+<a href="../resume.pdf" target="_blank" rel="noopener noreferrer">Open in new tab</a>
+ · 
+<a href="../resume.pdf" download>Download PDF</a>
 </p>
-<h1 id="experience">Experience</h1>
-<hr>
-<h2 id="data-analyst">Data Analyst</h2>
-<p>
-<strong>Singapore Telecommunications Limited</strong> — <em>Mar 2022 - Aug 2022</em>
+<noscript>
+<p class="resume-actions">
+<a href="../resume.pdf">Download my resume (PDF)</a> — the embedded viewer needs JavaScript.
 </p>
-<ul>
-<li>Support Service Delivery Executive (SDE) in facilitating resolutions of order disputes, follow-up and check on disputed orders.</li>
-<li>Validate with internal stakeholders such as Product/Marketing/Sales/SDEs on order investigation.</li>
-<li>Resolved up to 44,000 cases or disputed orders, utilizing visualization tools such as Excel Power Query and Python Pandas to filter outliers and represent data in dashboards.</li>
-</ul>
-<h2 id="software-development-engineer-intern">Software Development Engineer Intern</h2>
-<p>
-<strong>Inspiraz Technology Pte. Ltd.</strong> — <em>Sept 2021 - Feb 2022</em>
-</p>
-<ul>
-<li>Assisted in developing an Automated Screw Thread Inspection software module for WizerPro Machine Vision Software.</li>
-<li>Worked with C++ and MVTec Halcon software to perform thread measurements, supporting quality control processes by flagging screws that do not meet the required standards.</li>
-<li>Engaged in User Acceptance Test (UAT) of WizerPro Software, assiting team in improving software reliability and performance.</li>
-</ul>
-<h1 id="technical-skills">Technical Skills</h1>
-<hr>
-<ul>
-<li>Languages: Python, Javascript(Node, Express), SQL, HTML5, CSS3, JSON</li>
-<li>Libraries: TensorFlow, Keras, NumPy, skLearn, Pandas, spaCy</li>
-<li>Web Framework and Database: Flask, Hakyll, MySQL, MSSQL</li>
-<li>Machine Vision, NLP, Git, Linux, Excel.</li>
-</ul>
-<h1 id="projects">Projects</h1>
-<hr>
-<h2 id="nlp-company-description-classification-uob-final-year-proj.">NLP Company Description Classification | UOB Final Year Proj.</h2>
-<ul>
-<li>Used <strong>BERT</strong>, <strong>VDCNN</strong> and <strong>MLP</strong> to generate embeddings for company classification descriptions and compared using <strong>Loss, Accuracy, Precision</strong> and <strong>Recall</strong>.</li>
-<li>Trained BERT model achieved overall accuracy of <strong>90%</strong> through 4 classification labels of a company entity.</li>
-<li>Implementation was done using <strong>Tensorflow Keras</strong> in <strong>Google Colab</strong>, and can be trained using either GPU or TPU.</li>
-</ul>
-<h2 id="reinforcement-learning-with-super-mario-bros-nes">Reinforcement Learning with Super Mario Bros NES</h2>
-<ul>
-<li>Implemented RL <strong>Proximal Policy Optimization</strong> class to improve agent’s policy updates for <strong>Super Mario Bros NES Environment</strong>.</li>
-<li>The model is developed in <strong>OpenAI Gym</strong>, and the actor receives <strong>positive reward points</strong> after <strong>getting the flag</strong>, and negative reward points if it dies.</li>
-</ul>
-<h2 id="full-stacked-web-development">Full-Stacked Web Development</h2>
-<ul>
-<li>Developed both <strong>frontend and backend system</strong> for clients to watch as much musical performance as possible, and for developers to insert data into the database through backend.</li>
-<li>Implemented a <strong>liner search algorithm</strong> to attain most optimal performance schedule for clients to watch <strong>without any time clashes</strong>.</li>
-<li>Frontend done using <strong>HTML/CSS</strong>, <strong>Jquery</strong>, <strong>Bootstrap</strong>. Backend done using <strong>ExpressJs</strong>, <strong>PostgreSQL</strong>.</li>
-</ul>
-<h2 id="other-projects">Other Projects</h2>
-<ul>
-<li>Built a discord server bot using <strong>NodeJs</strong> and <strong>Twitter API</strong> that sends notifications upon a target user sends a tweet.</li>
-<li>Used <strong>MNIST</strong> dataset to train <strong>MLP, CNN</strong> models using <strong>Keras</strong> to predict handwritten numbers correctly. Implementatiom done using <strong>Keras</strong> and <strong>KerasTuner</strong>.</li>
-</ul>
-<h1 id="other-interests">Other Interests</h1>
-<hr>
-<ul>
-<li>Writing personal reflections, playing video games, swimming, running, badminton, hiking around Singapore.</li>
-</ul>
-<!-- <a href="../Resume.pdf" class="underline">Here</a> is a copy of my resume.
-I live in a small hut in the mountains of Kumano Kodō on Kii Hantō and would not
-like to be contacted. -->
+</noscript>
+<script type="module">
+import * as pdfjsLib from '/js/pdfjs/pdf.min.js';
+pdfjsLib.GlobalWorkerOptions.workerSrc = '/js/pdfjs/pdf.worker.min.js';
+
+const container = document.getElementById('pdf-viewer');
+const pdfUrl = new URL('../resume.pdf', document.baseURI).href;
+const MAX_WIDTH = 850;
+let pdfDoc = null;
+let renderToken = 0;
+
+async function renderAll() {
+  if (!pdfDoc) return;
+  const token = ++renderToken;
+  const width = Math.min(container.clientWidth || 800, MAX_WIDTH);
+  const dpr = window.devicePixelRatio || 1;
+  container.replaceChildren();
+  for (let n = 1; n <= pdfDoc.numPages; n++) {
+    const page = await pdfDoc.getPage(n);
+    if (token !== renderToken) return;
+    const base = page.getViewport({ scale: 1 });
+    const viewport = page.getViewport({ scale: width / base.width });
+    const canvas = document.createElement('canvas');
+    canvas.className = 'pdf-page';
+    canvas.width = Math.floor(viewport.width * dpr);
+    canvas.height = Math.floor(viewport.height * dpr);
+    const ctx = canvas.getContext('2d');
+    container.appendChild(canvas);
+    await page.render({
+      canvasContext: ctx,
+      viewport,
+      transform: dpr !== 1 ? [dpr, 0, 0, dpr, 0, 0] : null
+    }).promise;
+  }
+}
+
+function showFallback() {
+  container.innerHTML = '<p class="resume-fallback">Could not load the embedded viewer. <a href="/resume.pdf">Download the resume (PDF)</a>.</p>';
+}
+
+(async () => {
+  try {
+    pdfDoc = await pdfjsLib.getDocument(pdfUrl).promise;
+    await renderAll();
+  } catch (err) {
+    console.error('PDF render failed:', err);
+    showFallback();
+  }
+})();
+
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(renderAll, 200);
+});
+</script>
         </div>
     </main>
 
@@ -146,16 +144,16 @@ like to be contacted. -->
                 </p>
                 <p>
                     <a href="https://stackoverflow.com/users/12347869/prodoggy4life">
-                        <i class="fa fa-stack-overflow fa-2x fa-fw" aria-hidden="true"></i>
+                        <i class="fa-brands fa-stack-overflow fa-2x fa-fw" aria-hidden="true"></i>
                     </a>
                     <a href="https://github.com/ngzhankang">
-                        <i class="fa fa-github fa-2x fa-fw" aria-hidden="true"></i>
+                        <i class="fa-brands fa-github fa-2x fa-fw" aria-hidden="true"></i>
                     </a>
-                    <a href="https://www.reddit.com/user/prodoggy4life/">
-                        <i class="fa fa-reddit-alien fa-2x fa-fw" aria-hidden="true"></i>
+                    <a href="https://www.linkedin.com/in/ngzhankang/">
+                        <i class="fa-brands fa-linkedin fa-2x fa-fw" aria-hidden="true"></i>
                     </a>
                     <a href="https://www.instagram.com/zeekayyy22/">
-                        <i class="fa fa-instagram fa-2x fa-fw" aria-hidden="true"></i>
+                        <i class="fa-brands fa-instagram fa-2x fa-fw" aria-hidden="true"></i>
                     </a>
                 </p>
             </div>
