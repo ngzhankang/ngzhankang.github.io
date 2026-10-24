@@ -51,7 +51,7 @@ nav a {
     margin: 0 auto;
     padding: 10px 0;
     flex-direction: row;
-    max-width: 760px; }
+    max-width: 680px; }
   .nav-brand {
     font-size: 140%; }
   .nav-item:not(:last-child) {

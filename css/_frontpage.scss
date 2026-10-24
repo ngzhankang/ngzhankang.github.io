@@ -18,7 +18,7 @@ main {
 //     margin-top: 1em;
 // }
 .content h1 {
-    font-size: 1.6rem;
+    font-size: 2.5rem;
     // margin-bottom: .5em;
     font-family: $FiraSans;
     color: #363636;
@@ -34,7 +34,17 @@ main {
     }
 }
 .content p {
-    font-size: .9em
+    font-size: 1.0625rem;
+    line-height: 1.65;
+}
+// title/date pair in Selected work: keep the date tight under the title
+.content h4:has(+ .meta) {
+    margin-bottom: .25rem;
+}
+.content p.meta {
+    font-size: .9rem;
+    color: #6c757d;
+    margin-bottom: .5rem;
 }
 
 .content h2 {
