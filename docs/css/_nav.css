@@ -50,7 +50,8 @@ nav a {
     width: 100%;
     margin: 0 auto;
     padding: 10px 0;
-    flex-direction: row; }
+    flex-direction: row;
+    max-width: 680px; }
   .nav-brand {
     font-size: 140%; }
   .nav-item:not(:last-child) {
@@ -64,4 +65,4 @@ nav a {
   .nav-groups, .nav-group {
     flex-direction: row; }
   nav {
-    padding: 0px 2%; } }
+    padding: 0 1.5rem; } }

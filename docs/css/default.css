@@ -53,7 +53,8 @@ footer {
 .content {
   margin: 0 auto;
   position: relative;
-  width: auto; }
+  width: 100%;
+  max-width: 680px; }
 
 .content-footer {
   padding: 3rem 1.5rem 6rem;
@@ -78,7 +79,7 @@ footer {
 html a {
   text-decoration: none; }
 
-main a {
+main a, footer .footer-links a {
   color: inherit;
   text-decoration: inherit;
   background: linear-gradient(to right, orange, orange), linear-gradient(to right, red, #ff00b4, #0064c8);
@@ -87,18 +88,26 @@ main a {
   background-repeat: no-repeat;
   transition: background-size 400ms; }
 
-main a:hover {
+main a:hover, footer .footer-links a:hover {
   color: inherit;
   text-decoration: inherit;
   background-size: 0 3px, 100% 3px; }
 
-@media screen and (min-width: 1200px) {
-  .content {
-    max-width: 1152px; } }
+footer a {
+  color: #363636; }
 
-@media screen and (min-width: 1400px) {
-  .content {
-    max-width: 1344px; } }
+footer a:hover {
+  color: #000; }
+
+footer .footer-credits a {
+  text-decoration: underline; }
+
+footer .footer-credits a:has(i) {
+  text-decoration: none; }
+
+footer .footer-links {
+  font-size: .9rem;
+  margin-bottom: 1.5rem; }
 
 nav {
   padding: 10px 5%; }
@@ -152,7 +161,8 @@ nav a {
     width: 100%;
     margin: 0 auto;
     padding: 10px 0;
-    flex-direction: row; }
+    flex-direction: row;
+    max-width: 680px; }
   .nav-brand {
     font-size: 140%; }
   .nav-item:not(:last-child) {
@@ -166,7 +176,7 @@ nav a {
   .nav-groups, .nav-group {
     flex-direction: row; }
   nav {
-    padding: 0px 2%; } }
+    padding: 0 1.5rem; } }
 
 main {
   flex-grow: 1;
@@ -176,7 +186,7 @@ main {
   align-items: center; }
 
 .content h1 {
-  font-size: 1.6rem;
+  font-size: 2.5rem;
   font-family: "Fira Sans", sans-serif;
   color: #363636;
   line-height: 1.125;
@@ -189,7 +199,16 @@ main {
   margin-bottom: .8em; }
 
 .content p {
-  font-size: .9em; }
+  font-size: 1.0625rem;
+  line-height: 1.65; }
+
+.content h4:has(+ .meta) {
+  margin-bottom: .25rem; }
+
+.content p.meta {
+  font-size: .9rem;
+  color: #6c757d;
+  margin-bottom: .5rem; }
 
 .content h2 {
   font-size: 1.3rem;
@@ -197,13 +216,9 @@ main {
   margin-bottom: .3125rem;
   font-family: "Fira Sans", sans-serif; }
 
-@media screen and (min-width: 1200px) {
-  .content {
-    max-width: 1152px; } }
-
-@media screen and (min-width: 1400px) {
-  .content {
-    max-width: 1344px; } }
+.content h2:not(:first-child) {
+  margin-top: 3rem;
+  font-size: 2rem; }
 
 .columns.is-vcentered {
   align-items: center; }
