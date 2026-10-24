@@ -65,6 +65,8 @@ nav a {
         margin: 0 auto;
         padding: 10px 0;
         flex-direction: row;
+        // line the nav up with the centred .content column
+        max-width: $content-max-width;
     }
     .nav-brand {
         font-size: 140%;
@@ -84,7 +86,8 @@ nav a {
         flex-direction: row;
     }
     nav {
-        padding: 0px 2%;
+        // same side padding as main, so the edges match on narrow windows
+        padding: 0 1.5rem;
     }
 }
 

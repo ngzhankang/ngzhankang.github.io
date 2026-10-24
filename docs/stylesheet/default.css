@@ -73,7 +73,8 @@ footer {
 .content {
   margin: 0 auto;
   position: relative;
-  width: auto; }
+  width: 100%;
+  max-width: 760px; }
 
 .content-footer {
   padding: 3rem 1.5rem 6rem;
@@ -111,14 +112,6 @@ main a:hover {
   color: inherit;
   text-decoration: inherit;
   background-size: 0 3px, 100% 3px; }
-
-@media screen and (min-width: 1200px) {
-  .content {
-    max-width: 1152px; } }
-
-@media screen and (min-width: 1400px) {
-  .content {
-    max-width: 1344px; } }
 main {
   flex-grow: 1;
   flex-shrink: 0;
@@ -148,13 +141,9 @@ main {
   margin-bottom: .3125rem;
   font-family: "Fira Sans", sans-serif; }
 
-@media screen and (min-width: 1200px) {
-  .content {
-    max-width: 1152px; } }
-
-@media screen and (min-width: 1400px) {
-  .content {
-    max-width: 1344px; } }
+.content h2:not(:first-child) {
+  margin-top: 3rem;
+  font-size: 2rem; }
 nav {
   padding: 10px 5%; }
 
@@ -207,7 +196,8 @@ nav a {
     width: 100%;
     margin: 0 auto;
     padding: 10px 0;
-    flex-direction: row; }
+    flex-direction: row;
+    max-width: 760px; }
   .nav-brand {
     font-size: 140%; }
   .nav-item:not(:last-child) {
@@ -221,7 +211,7 @@ nav a {
   .nav-groups, .nav-group {
     flex-direction: row; }
   nav {
-    padding: 0px 2%; } }
+    padding: 0 1.5rem; } }
 .content h3 {
   font-size: 1.4rem; }
 
@@ -315,7 +305,8 @@ footer {
 .content {
   margin: 0 auto;
   position: relative;
-  width: auto; }
+  width: 100%;
+  max-width: 760px; }
 
 .content-footer {
   padding: 3rem 1.5rem 6rem;
@@ -353,14 +344,6 @@ main a:hover {
   color: inherit;
   text-decoration: inherit;
   background-size: 0 3px, 100% 3px; }
-
-@media screen and (min-width: 1200px) {
-  .content {
-    max-width: 1152px; } }
-
-@media screen and (min-width: 1400px) {
-  .content {
-    max-width: 1344px; } }
 
 nav {
   padding: 10px 5%; }
@@ -414,7 +397,8 @@ nav a {
     width: 100%;
     margin: 0 auto;
     padding: 10px 0;
-    flex-direction: row; }
+    flex-direction: row;
+    max-width: 760px; }
   .nav-brand {
     font-size: 140%; }
   .nav-item:not(:last-child) {
@@ -428,7 +412,7 @@ nav a {
   .nav-groups, .nav-group {
     flex-direction: row; }
   nav {
-    padding: 0px 2%; } }
+    padding: 0 1.5rem; } }
 
 main {
   flex-grow: 1;
@@ -459,13 +443,9 @@ main {
   margin-bottom: .3125rem;
   font-family: "Fira Sans", sans-serif; }
 
-@media screen and (min-width: 1200px) {
-  .content {
-    max-width: 1152px; } }
-
-@media screen and (min-width: 1400px) {
-  .content {
-    max-width: 1344px; } }
+.content h2:not(:first-child) {
+  margin-top: 3rem;
+  font-size: 2rem; }
 
 .columns.is-vcentered {
   align-items: center; }

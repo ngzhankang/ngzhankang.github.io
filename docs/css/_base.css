@@ -53,7 +53,8 @@ footer {
 .content {
   margin: 0 auto;
   position: relative;
-  width: auto; }
+  width: 100%;
+  max-width: 760px; }
 
 .content-footer {
   padding: 3rem 1.5rem 6rem;
@@ -91,11 +92,3 @@ main a:hover {
   color: inherit;
   text-decoration: inherit;
   background-size: 0 3px, 100% 3px; }
-
-@media screen and (min-width: 1200px) {
-  .content {
-    max-width: 1152px; } }
-
-@media screen and (min-width: 1400px) {
-  .content {
-    max-width: 1344px; } }
