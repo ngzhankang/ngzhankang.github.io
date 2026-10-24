@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Zhan Kang</title>
+    <title>$if(pagetitle)$$pagetitle$$else$$title$ | Zhan Kang$endif$</title>
+    <meta name="description" content="$if(description)$$description$$else$Zhan Kang, Computer Science and Design (AI) at SUTD. I build AI systems that hold up outside the demo: LLM tools in production, and machine learning on real edge hardware.$endif$">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
@@ -32,7 +33,6 @@
             </div>
             <ul class="nav-group nav-collapsed">
                 <li class="nav-item"><a href="/about">whoami</a></li>
-                <li class="nav-item"><a href="/archive.html">blog</a></li>
                 <li class="nav-item"><a href="/resume">resume</a></li>
             </ul>
         </div>
@@ -40,7 +40,6 @@
 
     <main>
         <div class ="content">
-            <!-- <h1>$title$</h1> -->
             $body$
         </div>
     </main>
@@ -74,6 +73,13 @@
                         <i class="fa-brands fa-creative-commons-nc fa-lg" aria-hidden="true"></i>
                         <i class="fa-brands fa-creative-commons-sa fa-lg" aria-hidden="true"></i>
                     </a>
+                </p>
+                <p>
+                    <a href="mailto:zhankang.work@gmail.com">zhankang.work@gmail.com</a>
+                    &nbsp;·&nbsp;
+                    <a href="https://github.com/ngzhankang">GitHub</a>
+                    &nbsp;·&nbsp;
+                    <a href="https://www.linkedin.com/in/ngzhankang/">LinkedIn</a>
                 </p>
                 <p>
                     <a href="https://stackoverflow.com/users/12347869/prodoggy4life">

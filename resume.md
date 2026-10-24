@@ -1,5 +1,6 @@
 ---
 title: Resume
+description: Resume of Zhan Kang, Computer Science and Design (AI) at SUTD, graduating July 2028. Open to internships from May 2027.
 ---
 
 <div id="pdf-viewer" class="resume-viewer" aria-label="Resume document"></div>
@@ -11,7 +12,7 @@ title: Resume
 </p>
 
 <noscript>
-<p class="resume-actions"><a href="/resume.pdf">Download my resume (PDF)</a> — the embedded viewer needs JavaScript.</p>
+<p class="resume-actions"><a href="/resume.pdf">Download my resume (PDF)</a>. The embedded viewer needs JavaScript.</p>
 </noscript>
 
 <script type="module">
