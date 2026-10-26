@@ -5,7 +5,7 @@ import           Data.Monoid (mappend)
 import           Hakyll
 import           Hakyll.Web.Sass (sassCompiler)
 import           Text.Jasmine
-import           Data.List              (isInfixOf, isSuffixOf)
+import           Data.List              (isInfixOf, isPrefixOf, isSuffixOf)
 import           System.FilePath.Posix  (splitFileName, takeBaseName, takeDirectory, (</>), takeFileName)
 
 
@@ -15,6 +15,24 @@ config = defaultConfiguration {
     -- destinationDirectory = "_site" we blanco this out because we need to generate files to docs for github to render
     destinationDirectory = "docs"
 }
+
+feedConfig :: FeedConfiguration
+feedConfig = FeedConfiguration
+    { feedTitle       = "Zhan Kang: Writing"
+    , feedDescription = "Notes on AI systems, machine learning on edge hardware, and whatever else I am learning."
+    , feedAuthorName  = "Zhan Kang"
+    , feedAuthorEmail = ""
+    , feedRoot        = "https://ngzhankang.github.io"
+    }
+
+-- feed readers see posts out of context, so turn site-relative links
+-- ("/images/x.png") into absolute ones
+absoluteUrls :: Item String -> Item String
+absoluteUrls = fmap (withUrls absolute)
+  where
+    absolute url
+        | "/" `isPrefixOf` url && not ("//" `isPrefixOf` url) = feedRoot feedConfig ++ url
+        | otherwise = url
 
 compressJsCompiler :: Compiler (Item String)
 compressJsCompiler = do
@@ -134,6 +152,7 @@ main = hakyllWith config $ do
     match "posts/*" $ do
         route $ setExtension "html"
         compile $ pandocCompiler
+            >>= saveSnapshot "content"
             >>= loadAndApplyTemplate "templates/post.html"    (postCtx tags)
             >>= loadAndApplyTemplate "templates/default.html" (postCtx tags)
             >>= relativizeUrls
@@ -164,5 +183,13 @@ main = hakyllWith config $ do
                 >>= loadAndApplyTemplate "templates/default.html" writingCtx
                 >>= relativizeUrls
                 >>= cleanIndexUrls
+
+    -- Atom feed of full posts, from the snapshot taken before the page templates
+    create ["feed.xml"] $ do
+        route idRoute
+        compile $ do
+            posts <- fmap (take 20) . recentFirst =<< loadAllSnapshots "posts/*" "content"
+            let feedCtx = postCtx tags <> bodyField "description"
+            renderAtom feedConfig feedCtx (map absoluteUrls posts)
 
     match "templates/*" $ compile templateCompiler
