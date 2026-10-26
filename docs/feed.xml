@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>Zhan Kang: Writing</title>
+    <subtitle><![CDATA[Notes on AI systems, machine learning on edge hardware, and whatever else I am learning.]]></subtitle>
+    <link href="https://ngzhankang.github.io/feed.xml" rel="self" />
+    <link href="https://ngzhankang.github.io" />
+    <id>https://ngzhankang.github.io/feed.xml</id>
+    <author>
+        <name>Zhan Kang</name>
+        
+    </author>
+    <updated>2023-07-11T00:00:00Z</updated>
+    <entry>
+    <title>Very First Blog Post</title>
+    <link href="https://ngzhankang.github.io/posts/2023-07-11-first-blog-post.html" />
+    <id>https://ngzhankang.github.io/posts/2023-07-11-first-blog-post.html</id>
+    <published>2023-07-11T00:00:00Z</published>
+    <updated>2023-07-11T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<h1>
+If
+</h1>
+<p>you’re actually reading this, you probably clicked on the link I posted in one of my instagram stories! So hello there pal!👋👋👋</p>
+<p>To be honest, I’ve wanted to create this first blog post for a damn long time already LOL. I remember the first time when I was busy setting up the functionalities of the website back during early 2023, I had to travel to and fro SMU just ’cause my house was really like a sauna. Like temperature during that period was hot. <em>Reallyyyyy hot.</em> Ah damn those are the days where I would keep begging my brother for his campus card just to access Learning Commons, and work till late 12 a.m. before taking bus back home.</p>
+<p>But anyways, I’d probably use this blog to consolidate my thoughts or stuff that I’ve learnt. (So maybe like personal financing? Or maybe something about coding stuff? Idk.)</p>
+<p>Oh yeah, just a brief explanation of why my website is probably abit too simplistic? So there was a period of time where I was debating with myself whether I should settle down with a fanciful website with lots of animations and pictures going on, or just a simple website that’s mainly just texts and white background. I spent a whole deal of time doing lots of research and thinking through before settling down with the latter with these few simple reasonings:</p>
+<ul>
+<li>I’m not planning to post blogs frequently, so I need to create something <strong>simple</strong> so that in future <strong>I don’t need to spend so much time revisiting my codes</strong> and trying to figure out which is which.</li>
+<li><strong>Trends keep changing</strong>, and so does the asthetics of a website. Things that may seem to look nice now might just not look nice in future. Creating something that looks simple actually would save me lots of time tearing down a webpage, just to rebuild the entire website with a brand new look, and waiting for it to become old-fashioned again in future. I’m not running a business, and neither am I an influencer, so there’s no need to make it look so nice. Besides, <strong>a website with simplistic design will never be out-of-fashion</strong>.</li>
+</ul>
+<p>So yeah, that’s my rationale behind the deisgn of this website. A simple and easy to maintain website.</p>
+<p>Not gonna lie, I’m actally experiencing writer’s block as i’m typing this post out😅. I guess I’ll just end it here.</p>
+<p>Bye!</p>]]></summary>
+</entry>
+
+</feed>
