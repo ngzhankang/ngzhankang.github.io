@@ -2,6 +2,8 @@
 title: Very First Blog Post
 author: Me lor who else haha
 date: 11/7/2023
+tags: personal
+summary: Why I started this site, and why I kept its design simple.
 ---
 
 <h1>If</h1> you're actually reading this, you probably clicked on the link I posted in one of my instagram stories! So hello there pal!👋👋👋

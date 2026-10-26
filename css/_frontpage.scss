@@ -33,9 +33,14 @@ main {
         bottom: .8em;
     }
 }
-.content p {
+.content p, .content li {
     font-size: 1.0625rem;
     line-height: 1.65;
+}
+// undo the global `ul { font-size: .9em }` in _resume.scss for post lists
+.content ul {
+    font-size: 1rem;
+    margin-bottom: 1rem;
 }
 // title/date pair in Selected work: keep the date tight under the title
 .content h4:has(+ .meta) {
@@ -45,6 +50,19 @@ main {
     font-size: .9rem;
     color: #6c757d;
     margin-bottom: .5rem;
+}
+// post tags: "#tag" links with a thinner underline than body links
+.tags a::before {
+    content: "#";
+}
+.tags a + a {
+    margin-left: .5em;
+}
+main .tags a {
+    background-size: 100% 1px, 0 1px;
+}
+main .tags a:hover {
+    background-size: 0 1px, 100% 1px;
 }
 
 .content h2 {

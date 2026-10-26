@@ -22,9 +22,11 @@ compressJsCompiler = do
     s <- getResourceString
     return $ itemSetBody (minifyJS s) s
 
-postCtx :: Context String
-postCtx =
+-- tags render as bare links; templates wrap them in .tags and CSS adds the "#"
+postCtx :: Tags -> Context String
+postCtx tags =
   dateField "date" "%B %e, %Y" <>
+  tagsFieldWith getTags simpleRenderLink mconcat "tags" tags <>
   siteCtx
 
 siteCtx :: Context String
@@ -62,6 +64,23 @@ cleanIndex url
 
 main :: IO ()
 main = hakyllWith config $ do
+    -- from the `tags:` field in each post; each tag gets a page at /tags/<tag>/
+    tags <- buildTags "posts/*" (fromCapture "tags/*/index.html")
+
+    tagsRules tags $ \tag pattern -> do
+        route idRoute
+        compile $ do
+            posts <- recentFirst =<< loadAll pattern
+            let tagCtx =
+                    constField "title" ("#" ++ tag) <>
+                    listField "posts" (postCtx tags) (return posts) <>
+                    siteCtx
+            makeItem ""
+                >>= loadAndApplyTemplate "templates/tag.html" tagCtx
+                >>= loadAndApplyTemplate "templates/default.html" tagCtx
+                >>= relativizeUrls
+                >>= cleanIndexUrls
+
     match "css/*.scss" $ do
         route   $ setExtension "css"
         compile sassCompiler
@@ -78,7 +97,7 @@ main = hakyllWith config $ do
         compile $ do
             posts <- fmap (take 5) . recentFirst =<< loadAll "posts/*"
             let indexCtx =
-                    listField "posts" postCtx (return posts) <>
+                    listField "posts" (postCtx tags) (return posts) <>
                     siteCtx
             getResourceBody
                 >>= applyAsTemplate indexCtx
@@ -115,9 +134,10 @@ main = hakyllWith config $ do
     match "posts/*" $ do
         route $ setExtension "html"
         compile $ pandocCompiler
-            >>= loadAndApplyTemplate "templates/post.html"    postCtx
-            >>= loadAndApplyTemplate "templates/default.html" postCtx
+            >>= loadAndApplyTemplate "templates/post.html"    (postCtx tags)
+            >>= loadAndApplyTemplate "templates/default.html" (postCtx tags)
             >>= relativizeUrls
+            >>= cleanIndexUrls
 
     create ["stylesheet/default.css"] $ do
         route idRoute
@@ -129,18 +149,20 @@ main = hakyllWith config $ do
         route idRoute
         compile compressJsCompiler
 
-    create ["archive.html"] $ do
+    create ["writing/index.html"] $ do
         route   idRoute
         compile $ do
             posts <- recentFirst =<< loadAll "posts/*"
-            let archiveCtx =
-                    listField "posts" postCtx (return posts) `mappend`
-                    constField "title" "Archives"            `mappend`
-                    defaultContext
+            let writingCtx =
+                    listField "posts" (postCtx tags) (return posts) <>
+                    field "taglist" (\_ -> renderTagList tags)      <>
+                    constField "title" "Writing"                    <>
+                    siteCtx
 
             makeItem ""
-                >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
-                >>= loadAndApplyTemplate "templates/default.html" archiveCtx
+                >>= loadAndApplyTemplate "templates/writing.html" writingCtx
+                >>= loadAndApplyTemplate "templates/default.html" writingCtx
                 >>= relativizeUrls
+                >>= cleanIndexUrls
 
     match "templates/*" $ compile templateCompiler

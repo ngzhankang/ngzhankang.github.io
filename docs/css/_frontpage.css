@@ -18,9 +18,13 @@ main {
   margin-top: 30px;
   margin-bottom: .8em; }
 
-.content p {
+.content p, .content li {
   font-size: 1.0625rem;
   line-height: 1.65; }
+
+.content ul {
+  font-size: 1rem;
+  margin-bottom: 1rem; }
 
 .content h4:has(+ .meta) {
   margin-bottom: .25rem; }
@@ -29,6 +33,18 @@ main {
   font-size: .9rem;
   color: #6c757d;
   margin-bottom: .5rem; }
+
+.tags a::before {
+  content: "#"; }
+
+.tags a + a {
+  margin-left: .5em; }
+
+main .tags a {
+  background-size: 100% 1px, 0 1px; }
+
+main .tags a:hover {
+  background-size: 0 1px, 100% 1px; }
 
 .content h2 {
   font-size: 1.3rem;

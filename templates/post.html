@@ -1,10 +1,10 @@
-<div class="info">
-    $date$
-    <br>
+<h1>$title$</h1>
+<p class="meta">
+    $date$$if(tags)$ · <span class="tags">$tags$</span>$endif$
     $if(author)$
-        Author: $author$
+        <br>Author: $author$
     $endif$
-</div>
+</p>
 
 <hr>
 $body$
