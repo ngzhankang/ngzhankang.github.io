@@ -110,6 +110,19 @@ main = hakyllWith config $ do
         route   idRoute
         compile copyFileCompiler
 
+    match "images/projects/**" $ do
+        route   idRoute
+        compile copyFileCompiler
+
+    -- one page per project at /projects/<name>/
+    match "projects/*.md" $ do
+        route $ cleanRoute
+        compile $ pandocCompiler
+                >>= loadAndApplyTemplate "templates/project.html" siteCtx
+                >>= loadAndApplyTemplate "templates/default.html" siteCtx
+                >>= relativizeUrls
+                >>= cleanIndexUrls
+
     match "index.html" $ do
         route   idRoute
         compile $ do
